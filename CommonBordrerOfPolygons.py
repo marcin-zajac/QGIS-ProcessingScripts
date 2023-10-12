@@ -114,16 +114,12 @@ class CommonBordrerOfPolygn(QgsProcessingAlgorithm):
                 
         common_borders.commitChanges()
         QgsProject.instance().addMapLayer(common_borders)
-        for f in common_borders.getFeatures():
-            print("sssssssss", f.id())
-                
         (sink, dest_id) = self.parameterAsSink(parameters, self.OUTPUT, context,
         common_borders.fields(), common_borders.wkbType(), source.sourceCrs())
         
         for fe in common_borders.getFeatures():
             sink.addFeature(fe, QgsFeatureSink.FastInsert)
      
-        print("ddddddddddddddddddddddddddddddddddd")
         if feedback.isCanceled():
             return {}
 
